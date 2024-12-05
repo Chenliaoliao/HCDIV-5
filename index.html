@@ -1,25 +1,162 @@
-<!DOCTYPE html>​
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yunnan Specialty Crops</title>
+  <style>
+    /* 通用样式 */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, rgba(255, 182, 193, 0.6), rgba(144, 238, 144, 0.6));
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #333;
+    }
 
-<html>​
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
 
-<head>​
+    h1, h2, h3, p {
+      margin: 0 0 15px;
+    }
 
-<meta charset="utf-8" />​
+    img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
 
-<link rel="stylesheet" href="hello.css" />​
+    /* 顶部标题 */
+    .hero {
+      text-align: center;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 50px 20px;
+    }
 
-<script src="hello.js"></script>​
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
 
-<title>Web Basics</title>​
+    .hero p {
+      font-size: 1.2rem;
+    }
 
-</head>​
+    /* 分区样式 */
+    .section {
+      margin: 40px 0;
+    }
 
-<body>​
+    .grid {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
 
-<p class="heading">Basics of Web</p>​
+    .grid-item {
+      flex: 1 1 calc(33.333% - 20px);
+      background: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+    }
 
-<p id="msg1" class="message">It's about Software Engineering!</p>​
+    .grid-item img {
+      margin-bottom: 10px;
+    }
 
-</body>​
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      margin: 20px 0;
+    }
 
-</html>​
+    .carousel img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .testimonial {
+      background: rgba(0, 0, 0, 0.05);
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+    }
+
+    footer {
+      background: rgba(0, 0, 0, 0.2);
+      padding: 20px 0;
+      text-align: center;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+<!-- 顶部标题 -->
+<div class="hero">
+  <h1>Yunnan Specialty Crops</h1>
+  <p>Discover the beauty of nature</p>
+</div>
+
+<!-- 关于部分 -->
+<div class="container">
+  <div class="section">
+    <h2>About</h2>
+    <div class="grid">
+      <div class="grid-item">
+        <img src="https://via.placeholder.com/150" alt="Image 1">
+        <p>Description 1</p>
+      </div>
+      <div class="grid-item">
+        <img src="https://via.placeholder.com/150" alt="Image 2">
+        <p>Description 2</p>
+      </div>
+      <div class="grid-item">
+        <img src="https://via.placeholder.com/150" alt="Image 3">
+        <p>Description 3</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 滑动图片 -->
+  <div class="carousel">
+    <img src="https://via.placeholder.com/800x400" alt="Carousel Image">
+  </div>
+
+  <!-- 部分地图 -->
+  <div class="section">
+    <h2>A map showcasing the production areas of specialty crops in Yunnan Province.</h2>
+    <div class="grid">
+      <div class="grid-item">
+        <img src="https://via.placeholder.com/150" alt="Reason 1">
+        <p>The Culture</p>
+      </div>
+      <div class="grid-item">
+        <img src="https://via.placeholder.com/150" alt="Reason 2">
+        <p>Natural Beauty</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 各年份产量对比 -->
+  <div class="section testimonial">
+    <h2>What Our Client Say About Us</h2>
+    <p>"This website made it easy to plan my dream vacation! The booking process was simple, and the team was very helpful throughout the journey."</p>
+    <p>- Customer Name</p>
+  </div>
+</div>
+
+<!-- 页脚 -->
+<footer>
+  &copy; 2024 Lombok Trip. All rights reserved.
+</footer>
+
+</body>
+</html>
