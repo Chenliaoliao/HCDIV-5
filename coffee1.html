@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yunnan Coffee Data</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    body {
+      background-color: transparent;
+      margin: 0;
+      padding: 0;
+    }
+    .section {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .grid-item {
+      text-align: center;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    svg {
+      background-color: transparent;
+      border-radius: 5px;
+    }
+    .tooltip {
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      padding: 5px;
+      border-radius: 5px;
+      visibility: hidden;
+    }
+    .grid-line {
+      stroke: lightgray;
+      stroke-dasharray: 2;
+    }
+    .legend {
+      font-size: 14px;
+    }
+    .legend-circle {
+      r: 5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="section">
+    <div class="grid-item">
+      <svg id="landHarvestChart" width="800" height="500"></svg>
+      <p>Actual Land Area vs Harvest Area</p>
+    </div>
+  </div>
+
+  <div class="tooltip" id="tooltip"></div>
+
+  <script>
+    d3.csv("https://raw.githubusercontent.com/Chenliaoliao/HCDIV-5/b6fb894f34900008669e9372f6ac2b9e1d00b3d6/coffee(10000%20hectare%2C10000%20tons.csv").then(function(data) {
+
+      data.forEach(function(d) {
+        d.year = +d.year;
+        d.real_area = +d.real_area;
+        d.harvest_area = +d.harvest_area;
+      });
+
+      const width = 800;
+      const height = 500;
+      const margin = { top: 50, right: 30, bottom: 50, left: 60 };
+
+      const xScale = d3.scaleBand()
+        .domain(data.map(d => d.year))
+        .range([margin.left, width - margin.right])
+        .padding(0.1);
+
+      const yScale = d3.scaleLinear()
+        .domain([0, d3.max(data, d => Math.max(d.real_area, d.harvest_area))])
+        .range([height - margin.bottom, margin.top]);
+
+      const lineRealArea = d3.line()
+        .x(d => xScale(d.year) + xScale.bandwidth() / 2)
+        .y(d => yScale(d.real_area));
+
+      const lineHarvestArea = d3.line()
+        .x(d => xScale(d.year) + xScale.bandwidth() / 2)
+        .y(d => yScale(d.harvest_area));
+
+      const svg1 = d3.select("#landHarvestChart");
+
+      // 添加折线
+      svg1.append("path")
+        .data([data])
+        .attr("d", lineRealArea)
+        .attr("fill", "none")
+        .attr("stroke", "#8a3e52")
+        .attr("stroke-width", 2);
+
+      svg1.append("path")
+        .data([data])
+        .attr("d", lineHarvestArea)
+        .attr("fill", "none")
+        .attr("stroke", "#ffa8c7")
+        .attr("stroke-width", 2);
+
+      // 添加左侧纵坐标
+      svg1.append("g")
+        .attr("transform", `translate(${margin.left}, 0)`)
+        .call(d3.axisLeft(yScale));
+
+      // 添加X轴
+      svg1.append("g")
+        .attr("transform", `translate(0,${height - margin.bottom})`)
+        .call(d3.axisBottom(xScale))
+        .selectAll("text")
+        .style("text-anchor", "middle");
+
+      const tooltip = d3.select("#tooltip");
+
+      // 添加纵向辅助线
+      const verticalLine = svg1.append("line")
+        .attr("class", "grid-line")
+        .attr("y1", margin.top)
+        .attr("y2", height - margin.bottom)
+        .attr("x1", 0)
+        .attr("x2", 0)
+        .style("visibility", "hidden");
+
+      // 添加鼠标悬停点
+      function addCircles(svg, data, color, yAccessor) {
+        svg.selectAll(".circle-" + yAccessor)
+          .data(data)
+          .enter().append("circle")
+          .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
+          .attr("cy", d => yScale(d[yAccessor]))
+          .attr("r", 5)
+          .attr("fill", color)
+          .on("mouseover", function(event, d) {
+            const xPos = xScale(d.year) + xScale.bandwidth() / 2;
+            verticalLine.attr("x1", xPos).attr("x2", xPos).style("visibility", "visible");
+            tooltip.style("visibility", "visible")
+              .html("Year: " + d.year + "<br>" + yAccessor.replace("_", " ") + ": " + d[yAccessor]);
+          })
+          .on("mousemove", function(event) {
+            tooltip.style("top", (event.pageY + 5) + "px")
+              .style("left", (event.pageX + 5) + "px");
+          })
+          .on("mouseout", function() {
+            verticalLine.style("visibility", "hidden");
+            tooltip.style("visibility", "hidden");
+          });
+      }
+
+      addCircles(svg1, data, "#8a3e52", "real_area");
+      addCircles(svg1, data, "#ffa8c7", "harvest_area");
+
+      // 添加图例
+      const legend = svg1.append("g")
+        .attr("class", "legend")
+        .attr("transform", `translate(${width - 200}, ${margin.top})`);
+
+      legend.append("circle")
+        .attr("cx", 0)
+        .attr("cy", 0)
+        .attr("r", 5)
+        .attr("fill", "#8a3e52");
+      legend.append("text")
+        .attr("x", 10)
+        .attr("y", 5)
+        .text("Actual Land Area");
+
+      legend.append("circle")
+        .attr("cx", 0)
+        .attr("cy", 20)
+        .attr("r", 5)
+        .attr("fill", "#ffa8c7");
+      legend.append("text")
+        .attr("x", 10)
+        .attr("y", 25)
+        .text("Harvest Area");
+
+    }).catch(function(error) {
+      console.log(error);
+    });
+  </script>
+
+</body>
+</html>
