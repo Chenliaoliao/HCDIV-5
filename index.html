@@ -59,17 +59,81 @@
       flex-wrap: wrap;
     }
 
-    .grid-item {
-      flex: 1 1 calc(33.333% - 20px);
-      background: rgba(255, 255, 255, 0.8);
-      padding: 20px;
-      text-align: center;
-      border-radius: 10px;
-    }
+    .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
-    .grid-item img {
-      margin-bottom: 10px;
-    }
+.section {
+  text-align: center;
+}
+
+/* Container 样式 */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.section h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+/* 图片网格布局 */
+.grid {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+/* 每张图片样式 */
+.grid-item {
+  position: relative; /* 为了放置绝对定位的描述 */
+  width: 200px;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* 图片样式 */
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s ease; /* 鼠标悬停时添加缩放动画 */
+}
+
+.image:hover {
+  transform: scale(1.1); /* 图片放大效果 */
+}
+
+/* 描述文字 */
+.description {
+  position: absolute;
+  bottom: -50px; /* 初始位置隐藏 */
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.8); /* 半透明背景 */
+  color: rgb(0, 0, 0);
+  padding: 10px;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 8px;
+  opacity: 0; /* 初始透明 */
+  transform: translateY(20px); /* 初始位置下移 */
+  transition: all 0.3s ease; /* 平滑动画 */
+}
+
+/* 鼠标悬停时显示描述 */
+.grid-item:hover .description {
+  bottom: 10px; /* 描述区域移到图片下方 */
+  opacity: 1; /* 变为完全可见 */
+  transform: translateY(0); /* 回到初始位置 */
+}
+
+
 
     .carousel {
       position: relative;
@@ -102,7 +166,7 @@
 <!-- 顶部标题 -->
 <div class="hero">
   <h1>Yunnan Specialty Crops</h1>
-  <p>Discover the beauty of nature</p>
+  <p>Yunnan Province is well-known for its diverse specialty crops, including coffee, fresh-cut flowers, and edible mushrooms. These crops play a crucial role in the local economy and showcase the region's unique agricultural landscape.</p>
 </div>
 
 <!-- 关于部分 -->
@@ -110,20 +174,32 @@
   <div class="section">
     <h2>About</h2>
     <div class="grid">
+      <!-- 第一张图片 -->
       <div class="grid-item">
-        <img src="https://via.placeholder.com/150" alt="Image 1">
-        <p>Description 1</p>
+        <img src="https://raw.githubusercontent.com/Chenliaoliao/HCDIV-5/13ff654eb7d1e7e103ecdde15ce28a093ccb3871/flower_ikebana_man.png" alt="Image 1" class="image">
+        <div class="description">
+          Yunnan fresh-cut flowers are known for their vibrant colors and exceptional quality, with roses, carnations, and lilies among the most famous varieties.
+        </div>
       </div>
+
+      <!-- 第二张图片 -->
       <div class="grid-item">
-        <img src="https://via.placeholder.com/150" alt="Image 2">
-        <p>Description 2</p>
+        <img src="https://raw.githubusercontent.com/Chenliaoliao/HCDIV-5/13ff654eb7d1e7e103ecdde15ce28a093ccb3871/cafe_coffee_bag.png" alt="Image 2" class="image">
+        <div class="description">
+          Yunnan coffee is celebrated for its sweet, floral, and nutty notes, grown in ideal highland conditions that produce premium Arabica beans.
+        </div>
       </div>
+
+      <!-- 第三张图片 -->
       <div class="grid-item">
-        <img src="https://via.placeholder.com/150" alt="Image 3">
-        <p>Description 3</p>
+        <img src="https://raw.githubusercontent.com/Chenliaoliao/HCDIV-5/13ff654eb7d1e7e103ecdde15ce28a093ccb3871/kinoko_maitake.png" alt="Image 3" class="image">
+        <div class="description">
+          Yunnan mushrooms, like matsutake and porcini, are prized for their rich umami flavor and play a central role in local cuisine and traditions.
+        </div>
       </div>
     </div>
   </div>
+</div>
 
   <!-- 滑动图片 -->
   <div class="carousel">
