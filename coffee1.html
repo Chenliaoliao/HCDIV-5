@@ -13,20 +13,21 @@
     }
     .section {
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
+      align-items: flex-start; /* 子项从顶部左对齐 */
+      flex-direction: column; /* 使子项垂直排列 */
       padding: 20px;
       box-sizing: border-box;
     }
     .grid-item {
-      text-align: center;
+      text-align: left; /* 左对齐文本 */
       border-radius: 5px;
       box-sizing: border-box;
+      margin-bottom: 20px; /* 添加底部间距 */
     }
     svg {
       background-color: transparent;
       border-radius: 5px;
+      margin-left: 0; /* 紧贴左侧 */
     }
     .tooltip {
       position: absolute;
@@ -47,6 +48,7 @@
       r: 5;
     }
   </style>
+  
 </head>
 <body>
 
