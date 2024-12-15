@@ -159,6 +159,20 @@
       text-align: center;
       color: #fff;
     }
+    .carousel {
+        position: relative;
+        width: 100%;
+        padding-bottom: 50%; /* 高度为宽度的50%，即2:1比例 */
+        height: 0;
+    }
+    .carousel iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none; /* 去掉边框 */
+      }
   </style>
 </head>
 <body>
