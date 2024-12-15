@@ -235,8 +235,8 @@
     const tooltip = d3.select("#tooltip");
 
     Promise.all([
-      d3.json("https://raw.githubusercontent.com/<your-github-username>/<your-repo>/main/云南省1_530000_full.json"), // 替换为GeoJSON的实际路径
-      d3.json("https://raw.githubusercontent.com/<your-github-username>/<your-repo>/main/flower-data.json")       // 替换为数据文件路径
+      d3.json("https://raw.githubusercontent.com/Chenliaoliao/HCDIV-5/refs/heads/main/云南省1_530000_full.json"), // 替换为GeoJSON的实际路径
+      d3.json("https://raw.githubusercontent.com/Chenliaoliao/HCDIV-5/refs/heads/main/flower-data.json")       // 替换为数据文件路径
   ]).then(([geoData, flowerData]) => {
       const projection = d3.geoMercator().fitSize([width, height], geoData);
       const path = d3.geoPath().projection(projection);
