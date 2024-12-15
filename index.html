@@ -132,8 +132,20 @@
   opacity: 1; /* 变为完全可见 */
   transform: translateY(0); /* 回到初始位置 */
 }
+/* 咖啡表格：居左 */
+.left-aligned-iframe {
+  display: block; /* 使 iframe 独占一行 */
+  margin: 0;      /* 去掉默认的外边距 */
+  text-align: left; /* 确保左对齐 */
+}
 
-
+/* 食用菇表格：居中 */
+.centered-iframe {
+  display: block; /* 使 iframe 独占一行 */
+  margin: 0 auto; /* 自动分配左右边距，实现居中 */
+  text-align: center; /* 水平居中 */
+  max-width: 1200px; /* 可选：限制最大宽度 */
+}
 
     .carousel {
       position: relative;
@@ -143,13 +155,6 @@
 
     .carousel img {
       width: 100%;
-      border-radius: 10px;
-    }
-
-    .testimonial {
-      background: rgba(0, 0, 0, 0.05);
-      padding: 20px;
-      text-align: center;
       border-radius: 10px;
     }
 
@@ -226,29 +231,37 @@
       style="border: none;">
   </iframe>
 </div>
-
-
-  <!-- 部分地图 -->
-  <div class="section">
-    <div class="grid">
-      <div class="grid-item">
-        <img src="https://via.placeholder.com/150" alt="Reason 1">
-        <p>The Culture</p>
-      </div>
-      <div class="grid-item">
-        <img src="https://via.placeholder.com/150" alt="Reason 2">
-        <p>Natural Beauty</p>
-      </div>
-    </div>
-  </div>
-
   <!-- 各年份产量对比 -->
-  <div class="section testimonial">
-    <h2>What Our Client Say About Us</h2>
-    <p>"This website made it easy to plan my dream vacation! The booking process was simple, and the team was very helpful throughout the journey."</p>
-    <p>- Customer Name</p>
-  </div>
+<!-- 咖啡表格 -->
+<div class="section">
+  <h2>Yunnan Coffee Production</h2>
+  <p>Learn about the exquisite coffee varieties produced in Yunnan's ideal highland conditions.</p>
+  <iframe
+    src="https://Chenliaoliao.github.io/HCDIV-5/coffee1.html"
+    class="left-aligned-iframe"
+    width="100%"
+    height="600"
+    style="border: none; overflow: hidden;" scrolling="no">
+  </iframe>
 </div>
+
+<!-- 食用菇表格 -->
+<div class="section">
+  <h2>Yunnan Edible Mushrooms</h2>
+  <p>Discover the diverse range of edible mushrooms produced in Yunnan Province, celebrated for their rich flavors and culinary versatility.</p>
+  <iframe
+    src="https://Chenliaoliao.github.io/HCDIV-5/Mushrooms.html"
+    class="centered-iframe"
+    width="100%"
+    height="600"
+    style="border: none;overflow: hidden;" scrolling="no">
+  </iframe>
+</div>
+
+</div>
+
+</div>
+
 
 <!-- 页脚 -->
 <footer>
