@@ -17,76 +17,95 @@
     }
 
     .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    h1, h2, h3, p {
-      margin: 0 0 15px;
-    }
-
-    img {
-      max-width: 100%;
-      border-radius: 10px;
-    }
-
-    /* 顶部标题 */
-    .hero {
-      text-align: center;
-      color: #fff;
-      background: rgba(196, 19, 84, 0.6);
-      padding: 50px 20px;
-    }
-
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-    }
-
-    /* 分区样式 */
-    .section {
-      margin: 40px 0;
-    }
-
-    .grid {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-}
-
-.section {
   text-align: center;
 }
 
-/* Container 样式 */
+h1, h2, h3, p {
+  margin: 0 0 15px;
+}
+h2, h3, p {
+    text-align: left;
+    margin-left: 20px; 
+}
+img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+/* 顶部标题 */
+.hero {
+  text-align: center;
+  color: #fff;
+  background: rgba(196, 19, 84, 0.6);
+  padding: 50px 20px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+}
+
+/* 容器整体样式 */
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  text-align: center;
-}
-
-.section h2 {
-  font-size: 28px;
-  margin-bottom: 20px;
-}
-
-/* 图片网格布局 */
-.grid {
   display: flex;
-  justify-content: space-around;
-  gap: 20px;
+  justify-content: center; /* 居中整个容器内容 */
+}
+
+.section .grid {
+  display: flex;
+  justify-content: space-between; /* 子元素平分空间 */
+  align-items: center; /* 垂直居中对齐 */
+  text-align: center; /* 水平居中标题、图片、描述 */
+  gap: 240px; /* 图片之间的间距 */
+}
+
+/* 每个网格项的样式 */
+.grid-item {
+  display: flex;
+  flex-direction: column; /* 子元素垂直排列 */
+  align-items: center; /* 子元素水平居中对齐 */
+  width: 30%; /* 每个网格项宽度均分 */
+}
+
+/* 标题样式 */
+.grid-item h3 {
+  margin-bottom: 10px; /* 标题与图片之间的间距 */
+  text-align: center; /* 标题居中对齐 */
+}
+
+/* 图片样式 */
+.grid-item .image {
+  max-width: 100%; /* 图片自适应宽度 */
+  height: auto; /* 图片等比例缩放 */
+  display: block; /* 使图片不会有额外间距 */
+  margin: 0 auto; /* 图片居中 */
+}
+
+/* 描述文字样式 */
+.grid-item .description {
+  margin-top: 10px; /* 描述与图片之间的间距 */
+  text-align: center; /* 描述居中 */
+  font-size: 14px;
+  color: #333; /* 描述文本颜色 */
+}
+
+/* 小屏幕优化 */
+@media (max-width: 768px) {
+  .grid {
+    flex-direction: column; /* 小屏幕时垂直排列 */
+    gap: 30px;
+  }
+
+  .grid-item {
+    width: 100%; /* 宽度占满屏幕 */
+  }
 }
 
 /* 每张图片样式 */
@@ -142,6 +161,7 @@
   background:transparent ; /* 透明背景 */
   border-radius: 10px; /* 圆角 */
   overflow-x: hidden; /* 去除横向滚动条 */
+  margin-bottom: 20px; /* 图表与介绍框之间的间距 */
   width: 100%; /* 容器宽度自适应 */
   justify-content: flex-start; /* 确保表格从左对齐 */
   max-width: 100%; /* 最大宽度自适应 */
@@ -185,6 +205,51 @@
   }
 }
 
+/* 介绍容器整体布局 */
+.description-container {
+  display: flex;
+  justify-content: space-between; /* 两段文字左右分布 */
+  gap: 20px; /* 设置两个介绍段落之间的间隔 */
+  margin-top: 0; /* 移除默认间距 */
+  padding-top: 0;
+  margin-bottom: 40px; /* 添加底部间距 */
+  padding: 0 20px; /* 左右内边距 */
+  position: relative; /* 启用定位 */
+  top: -120px; /* 向上移动40px */
+}
+
+
+/* 每个介绍项样式 */
+.description-item {
+  flex: 1; /* 让两段文字平分空间 */
+  padding: 35px;
+  background-color: rgba(255, 255, 255, 0.8); /* 背景半透明 */
+  border: 1px solid #ddd; /* 浅色边框 */
+  border-radius: 8px; /* 圆角边框 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+  font-family: "Arial", sans-serif;
+  line-height: 1.5; /* 调整行高 */
+  color: #333; /* 文本颜色 */
+}
+
+/* 强调段落标题 */
+.description-item p strong {
+  color: #8B0000; /* 深红色 */
+  font-size: 16px;
+}
+
+/* 小屏幕优化 */
+@media (max-width: 768px) {
+  .coffee-tables {
+    flex-direction: column; /* 表格垂直排列 */
+    margin-bottom: 20px; /* 小屏幕适配更小的间距 */
+    padding: 0; 
+  }
+  .description-container {
+    flex-direction: column; /* 介绍框垂直排列 */
+    gap: 10px; /* 垂直间距减小 */
+  }
+}
 
 /* 食用菇表格：居中 */
 .centered-iframe {
@@ -239,10 +304,10 @@
 <!-- 关于部分 -->
 <div class="container">
   <div class="section">
-    <h2>About</h2>
     <div class="grid">
       <!-- 第一张图片 -->
       <div class="grid-item">
+        <h3>Fresh-cut Flowers</h3>
         <img src="https://raw.githubusercontent.com/Chenliaoliao/HCDIV-5/13ff654eb7d1e7e103ecdde15ce28a093ccb3871/flower_ikebana_man.png" alt="Image 1" class="image">
         <div class="description">
           Yunnan fresh-cut flowers are known for their vibrant colors and exceptional quality, with roses, carnations, and lilies among the most famous varieties.
@@ -251,6 +316,7 @@
 
       <!-- 第二张图片 -->
       <div class="grid-item">
+        <h3>Coffee</h3>
         <img src="https://raw.githubusercontent.com/Chenliaoliao/HCDIV-5/13ff654eb7d1e7e103ecdde15ce28a093ccb3871/cafe_coffee_bag.png" alt="Image 2" class="image">
         <div class="description">
           Yunnan coffee is celebrated for its sweet, floral, and nutty notes, grown in ideal highland conditions that produce premium Arabica beans.
@@ -259,6 +325,7 @@
 
       <!-- 第三张图片 -->
       <div class="grid-item">
+        <h3>Mushrooms</h3>
         <img src="https://raw.githubusercontent.com/Chenliaoliao/HCDIV-5/13ff654eb7d1e7e103ecdde15ce28a093ccb3871/kinoko_maitake.png" alt="Image 3" class="image">
         <div class="description">
           Yunnan mushrooms, like matsutake and porcini, are prized for their rich umami flavor and play a central role in local cuisine and traditions.
@@ -270,7 +337,7 @@
 
   <!-- 滑动图片 -->
 <div class="carousel">
-  <h2>A map showcasing the production areas of specialty crops in Yunnan Province.</h2>
+  <h2> Yunnan Fresh-cut Flowers</h2>
   <iframe 
       src="https://y10096.github.io/https-y10096.github.io-HCDIV-1/" 
       width="800" 
@@ -283,6 +350,7 @@
 <div class="section">
     <h2>Yunnan Coffee </h2>
     <div class="coffee-tables">
+      <h3></h3>
       <!-- 第一张表格 -->
       <iframe 
         src="https://Chenliaoliao.github.io/HCDIV-5/coffee1.html" 
@@ -298,12 +366,20 @@
   </div>
   
 </div>
+<div class="description-container">
+  <div class="description-item">
+    <p><strong>Actual Land Area vs Harvest Area:</strong> This graph displays the growth trend of Yunnan coffee cultivation. The 'Actual Land Area' (dark red line) shows a rapid increase between 2010 and 2013, while the 'Harvest Area' (pink line) grew steadily during the same period before stabilizing in recent years.</p>
+  </div>
+  <div class="description-item">
+    <p><strong>Yunnan Coffee Production Over the Years:</strong> This bar chart highlights Yunnan's annual coffee production from 2015 to 2022. Although production peaked in 2016 and 2017, it remained relatively stable afterward, indicating consistent output levels.</p>
+  </div>
+</div>
 
 
 <!-- 食用菇表格 -->
 <div class="section">
   <h2>Yunnan Edible Mushrooms</h2>
-  <p>Discover the diverse range of edible mushrooms produced in Yunnan Province, celebrated for their rich flavors and culinary versatility.</p>
+  <p>The bar chart below shows the production of edible mushrooms in Yunnan Province between 2015 and 2022.</p>
   <iframe
     src="https://Chenliaoliao.github.io/HCDIV-5/Mushrooms.html"
     class="centered-iframe"
@@ -320,7 +396,7 @@
 
 <!-- 页脚 -->
 <footer>
-  &copy; Yunnan Specialty Crops
+  &copy; 1009608 Yeshaoying & 1009650 Chenliaoliao All data sources https://stats.yn.gov.cn/List22.aspx
 </footer>
 
 </body>
